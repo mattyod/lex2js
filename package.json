@@ -1,0 +1,51 @@
+{
+  "name": "lex2js",
+  "version": "0.0.1",
+  "description": "Lex format json files to code and back",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "tape 'src/**/*.test.js' | tap-spec",
+    "test:coverage": "nyc npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattyod/lex2js.git"
+  },
+  "keywords": [
+    "Lex",
+    "JSON",
+    "JS"
+  ],
+  "author": "Matthew O'Donoghue",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mattyod/lex2js/issues"
+  },
+  "homepage": "https://github.com/mattyod/lex2js#readme",
+  "dependencies": {
+    "camelcase": "5.0.0",
+    "eslint": "5.9.0",
+    "prettier": "1.15.3"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-plugin-import": "2.14.0",
+    "nyc": "13.1.0",
+    "sinon": "7.2.2",
+    "tap-spec": "5.0.0",
+    "tape": "4.9.1"
+  },
+  "nyc": {
+    "report-dir": "coverage",
+    "temp-dir": "./coverage/.nyc_output",
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "exclude": [
+      "**/*.test.js",
+      "fixtures"
+    ]
+  }
+}
