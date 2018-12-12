@@ -16,6 +16,7 @@ const mapping = {
 };
 
 function write(file, dir) {
+  const { log } = console;
   const {
     type,
     folder,
@@ -27,7 +28,7 @@ function write(file, dir) {
 
   fs.writeFileSync(filePath, code);
 
-  console.log(`${mapping[type]}CREATED ${type}:${original} ${filePath}`);
+  log(`${mapping[type]}CREATED ${type}:${original} ${filePath}`);
 }
 
 module.exports = {

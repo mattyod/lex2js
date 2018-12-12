@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint .",
     "test": "tape 'src/**/*.test.js' | tap-spec",
-    "test:coverage": "nyc npm test"
+    "test:coverage": "nyc npm test",
+    "precommit": "npm run lint && npm audit && npm run test:coverage"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.14.0",
+    "husky": "1.2.0",
     "nyc": "13.1.0",
     "sinon": "7.2.2",
     "tap-spec": "5.0.0",

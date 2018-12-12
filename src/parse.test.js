@@ -1,9 +1,8 @@
 const test = require('tape');
 const sinon = require('sinon');
+const fs = require('fs');
 const parse = require('./parse');
 const writeFile = require('./write-file');
-
-const fs = require('fs');
 
 const getFile = name => fs
   .readFileSync(`${__dirname}/../fixtures/parse/${name}.js`)
