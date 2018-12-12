@@ -38,6 +38,10 @@
     "tap-spec": "5.0.0",
     "tape": "4.9.1"
   },
+  "files": [
+    "/src",
+    "!/src/**/*.test.js"
+  ],
   "nyc": {
     "report-dir": "coverage",
     "temp-dir": "./coverage/.nyc_output",
