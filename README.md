@@ -14,3 +14,10 @@ const params = {
 
 lex2js.parse(params);
 ```
+
+Converts a JSON Lex file into JS code with imports for intents, slots and slotTypes in their own respective folders.
+
+### Param definitions:
+
+- **sourceBotPath:** path to an exported Lex JSON file.
+- **distFolderPath:** destination folder for the output bot, intents, slots and slotTypes.
