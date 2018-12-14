@@ -13,29 +13,14 @@ const mapping = {
   slotType: lightYellow,
   intent: cyan,
   bot: magenta,
-};
-
-const messages = {
-  exists: directory => `📂 folder ${directory} already exists.`,
-  created: directory => `📂 created folder ${directory}.`,
-};
-
-const errorHandler = (error, directory) => {
-  const { log } = console;
-
-  if (error) {
-    if (error.code === 'EEXIST') {
-      log(messages.exists(directory));
-    } else {
-      log(error);
-    }
-  } else {
-    log(messages.created(directory));
-  }
+  accounts: magenta,
 };
 
 function write(file, dir) {
-  const { log } = console;
+  const {
+    log,
+    error,
+  } = console;
   const {
     type,
     folder,
@@ -44,19 +29,21 @@ function write(file, dir) {
   } = file;
 
   const directory = path.join(dir, folder);
-  const error = fs.mkdirSync(directory);
 
-  errorHandler(error, directory);
+  try {
+    fs.mkdirSync(directory);
+    log(`📂 created folder ${directory}.`);
+  } catch (err) {
+    if (err.code !== 'EEXIST') {
+      error(err);
+    }
+  }
 
-  const filePath = path.join(dir, folder, `${fileName}.js`);
+  const filePath = path.join(directory, `${fileName}.js`);
 
   fs.writeFileSync(filePath, code);
 
   log(`${mapping[type]}CREATED ${type}:${original} ${filePath}`);
 }
 
-module.exports = {
-  write,
-  errorHandler,
-  messages,
-};
+module.exports = { write };

@@ -5,6 +5,7 @@ const prepareCode = require('./lib/prepare-code');
 const folders = {
   slot: 'slots',
   slotType: 'slot-types',
+  accounts: '',
 };
 
 function createFile(item, type) {

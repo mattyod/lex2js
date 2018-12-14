@@ -3,7 +3,7 @@ const camelcase = require('camelcase');
 const prepareCode = require('./lib/prepare-code');
 const compareName = require('./lib/compare-name');
 
-function createBotFile(resource) {
+function createBotFile(resource, hasAccounts) {
   const {
     intents,
     slotTypes = [],
@@ -41,6 +41,7 @@ function createBotFile(resource) {
     .replace('\'SLOT_TYPES_PLACEHOLDER\'', slotTypeNames.join(','));
 
   const template = `
+    const hasAccounts = ${hasAccounts};
     ${requires.join('\n')}
 
     const ${botName} = {
@@ -51,6 +52,11 @@ function createBotFile(resource) {
       },
       resource: ${code},
     };
+
+    if (hasAccounts && !process.argv[2]) {
+      console.log('args received', process.argv);
+      throw new Error('No account in call to generate JSON but this bot expects one to be specified');
+    }
 
     process.stdout.write(JSON.stringify(${botName}));
   `;

@@ -9,15 +9,20 @@ const getFile = name => fs
   .toString();
 
 test(__filename, (t) => {
-  t.plan(5);
+  t.plan(6);
 
   const distFolderPath = '/foo';
 
   const params = {
     sourceBotPath: `${__dirname}/../fixtures/test-bot-input.js`,
     distFolderPath,
+    accounts: {
+      prod: '1234567890',
+      nonprod: '0987654321',
+    },
   };
 
+  const testAccounts = getFile('testAccounts');
   const testIntent = getFile('testIntent');
   const anotherIntent = getFile('anotherIntent');
   const exampleSlotTypeSlotType = getFile('exampleSlotTypeSlotType');
@@ -31,6 +36,15 @@ test(__filename, (t) => {
   const expected = [
     [
       {
+        type: 'accounts',
+        fileName: 'accounts',
+        folder: '',
+        code: testAccounts,
+      },
+      distFolderPath,
+    ],
+    [
+      {
         type: 'intent',
         fileName: 'testIntent',
         folder: 'intents',
@@ -40,19 +54,19 @@ test(__filename, (t) => {
     ],
     [
       {
-        type: 'slot',
-        fileName: 'testSlot',
-        folder: 'slots',
-        code: testSlot,
+        type: 'intent',
+        fileName: 'anotherIntent',
+        folder: 'intents',
+        code: anotherIntent,
       },
       distFolderPath,
     ],
     [
       {
-        type: 'intent',
-        fileName: 'anotherIntent',
-        folder: 'intents',
-        code: anotherIntent,
+        type: 'slot',
+        fileName: 'testSlot',
+        folder: 'slots',
+        code: testSlot,
       },
       distFolderPath,
     ],
@@ -77,15 +91,17 @@ test(__filename, (t) => {
   ];
 
   t.deepEqual(writeFile.write.args[0], expected[0],
-    'it breaks the bot into the expected parts');
+    'it deconstructs the bot into expected parts');
   t.deepEqual(writeFile.write.args[1], expected[1],
-    'it breaks the bot into the expected parts');
+    'it deconstructs the bot into expected parts');
   t.deepEqual(writeFile.write.args[2], expected[2],
-    'it breaks the bot into the expected parts');
+    'it deconstructs the bot into expected parts');
   t.deepEqual(writeFile.write.args[3], expected[3],
-    'it breaks the bot into the expected parts');
+    'it deconstructs the bot into expected parts');
   t.deepEqual(writeFile.write.args[4], expected[4],
-    'it breaks the bot into the expected parts');
+    'it deconstructs the bot into expected parts');
+  t.deepEqual(writeFile.write.args[5], expected[5],
+    'it deconstructs the bot into expected parts');
 
   sinon.restore();
 });

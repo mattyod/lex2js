@@ -14,6 +14,22 @@ test(__filename, (t) => {
       { name: 'slot_one' },
       { name: 'slot_two' },
     ],
+    fulfillmentActivity: {
+      type: 'CodeHook',
+      codeHook: {
+        uri: 'arn:aws:lambda:eu-west-1:1234567890:function:testLambda',
+      },
+    },
+    dialogCodeHook: {
+      uri: 'arn:aws:lambda:eu-west-1:1234567890:function:testLambda',
+    },
+  };
+
+  const params = {
+    accounts: {
+      nonprod: '1234567890',
+      prod: '01234567890',
+    },
   };
 
   const fixture = fs
@@ -27,7 +43,7 @@ test(__filename, (t) => {
     code: fixture,
   };
 
-  const actual = createIntentFile(intent);
+  const actual = createIntentFile(intent, params);
 
   t.deepEqual(actual, expected,
     'renders an intent file object');

@@ -1,3 +1,4 @@
+const hasAccounts = true;
 const anotherIntent = require('./intents/anotherIntent.js');
 const testIntent = require('./intents/testIntent.js');
 const exampleSlotTypeSlotType = require('./slot-types/exampleSlotType.js');
@@ -20,5 +21,12 @@ const testBot = {
     ],
   },
 };
+
+if (hasAccounts && !process.argv[2]) {
+  console.log('args received', process.argv);
+  throw new Error(
+    'No account in call to generate JSON but this bot expects one to be specified'
+  );
+}
 
 process.stdout.write(JSON.stringify(testBot));

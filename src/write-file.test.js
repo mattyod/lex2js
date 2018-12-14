@@ -1,11 +1,7 @@
 const test = require('tape');
 const fs = require('fs');
 const sinon = require('sinon');
-const {
-  write,
-  errorHandler,
-  messages,
-} = require('./write-file');
+const { write } = require('./write-file');
 
 test(__filename, (t) => {
   t.plan(2);
@@ -47,42 +43,28 @@ test(__filename, (t) => {
 test(__filename, (t) => {
   t.plan(1);
 
-  const log = sinon.stub(console, 'log');
-
-  const directory = '/foo/bar';
-  const error = {
-    code: 'EEXIST',
+  const file = {
+    type: 'slot',
+    folder: 'slots',
+    fileName: 'testSlot',
+    code: '?',
   };
 
-  errorHandler(error, directory);
+  const error = new Error('test boom should be logged');
 
-  const expected = [
-    [messages.exists(directory)],
-  ];
+  sinon.stub(fs, 'writeFileSync');
+  sinon.stub(fs, 'mkdirSync');
+  const consoleError = sinon.spy(console, 'error');
 
-  t.deepEqual(log.args, expected,
-    'logs that directory already exists');
+  fs.mkdirSync.throws(error);
 
-  sinon.restore();
-});
+  write(file, 'Users/mattyod/lexbot');
 
-test(__filename, (t) => {
-  t.plan(1);
-
-  const log = sinon.stub(console, 'log');
-
-  const directory = '/foo/bar';
-  const error = {
-    code: 'ENOENT',
-  };
-
-  errorHandler(error, directory);
-
-  const expected = [
+  const expectedErrorArgs = [
     [error],
   ];
 
-  t.deepEqual(log.args, expected,
+  t.deepEqual(consoleError.args, expectedErrorArgs,
     'logs unexpected errors');
 
   sinon.restore();
@@ -91,18 +73,26 @@ test(__filename, (t) => {
 test(__filename, (t) => {
   t.plan(1);
 
-  const log = sinon.stub(console, 'log');
+  const file = {
+    type: 'slot',
+    folder: 'slots',
+    fileName: 'testSlot',
+    code: '?',
+  };
 
-  const directory = '/foo/bar';
+  const error = new Error('test boom should not be logged');
+  error.code = 'EEXIST';
 
-  errorHandler(null, directory);
+  sinon.stub(fs, 'writeFileSync');
+  sinon.stub(fs, 'mkdirSync');
+  const consoleError = sinon.spy(console, 'error');
 
-  const expected = [
-    [messages.created(directory)],
-  ];
+  fs.mkdirSync.throws(error);
 
-  t.deepEqual(log.args, expected,
-    'logs successful folder creation');
+  write(file, 'Users/mattyod/lexbot');
+
+  t.equal(consoleError.callCount, 0,
+    'does not log EEXIST errors when making directories');
 
   sinon.restore();
 });
