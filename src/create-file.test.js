@@ -64,7 +64,7 @@ test(__filename, (t) => {
 
   const expected = {
     type,
-    fileName: 'TestSlotType',
+    fileName: 'Test',
     folder: 'slot-types',
     code: fixture,
   };
