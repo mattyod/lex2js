@@ -36,16 +36,16 @@ const testBot = {
           slotConstraint: 'required',
           slotType: 'exampleSlotType',
           valueElicitationPrompt: {
-              messages: [
-                {
-                  contentType: 'PlainText',
-                  content: 'what is it?'
-                }
-              ],
-              maxAttempts: '2'
-            },
-            priority: '1',
-            sampleUtterances: []
+            messages: [
+              {
+                contentType: 'PlainText',
+                content: 'what is it?',
+              },
+            ],
+            maxAttempts: '2',
+          },
+          priority: '1',
+          sampleUtterances: [],
         }],
         conclusionStatement: {
           messages: [{
@@ -53,7 +53,7 @@ const testBot = {
             content: 'nearly done',
           }],
         },
-      }
+      },
     ],
     slotTypes: [
       {
@@ -66,12 +66,12 @@ const testBot = {
             synonyms: [
               'check',
               'trial',
-            ]
-          }
+            ],
+          },
         ],
         valueSelectionStrategy: 'TOP_RESOLUTION',
-      }
-    ]
+      },
+    ],
   },
 };
 

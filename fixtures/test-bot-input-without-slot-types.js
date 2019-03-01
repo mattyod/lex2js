@@ -36,16 +36,16 @@ const testBot = {
           slotConstraint: 'required',
           slotType: 'AMAZON.Person',
           valueElicitationPrompt: {
-              messages: [
-                {
-                  contentType: 'PlainText',
-                  content: 'what is your name?'
-                }
-              ],
-              maxAttempts: '2'
-            },
-            priority: '1',
-            sampleUtterances: []
+            messages: [
+              {
+                contentType: 'PlainText',
+                content: 'what is your name?',
+              },
+            ],
+            maxAttempts: '2',
+          },
+          priority: '1',
+          sampleUtterances: [],
         }],
         conclusionStatement: {
           messages: [{
@@ -53,8 +53,8 @@ const testBot = {
             content: 'nearly done',
           }],
         },
-      }
-    ]
+      },
+    ],
   },
 };
 

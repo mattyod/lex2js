@@ -28,7 +28,7 @@ function createFile(item, type) {
 
   return {
     type,
-    fileName: `${item.name}${suffix}`,
+    fileName: item.name,
     folder: folders[type],
     code: output,
   };

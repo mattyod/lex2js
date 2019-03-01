@@ -1,13 +1,12 @@
 {
   "name": "lex2js",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Lex format json files to code and back",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint .",
     "test": "tape 'src/**/*.test.js' | tap-spec",
-    "test:coverage": "nyc npm test",
-    "precommit": "npm run lint && npm audit && npm run test:coverage"
+    "test:coverage": "nyc npm test"
   },
   "repository": {
     "type": "git",
@@ -25,18 +24,18 @@
   },
   "homepage": "https://github.com/mattyod/lex2js#readme",
   "dependencies": {
-    "camelcase": "5.0.0",
-    "eslint": "5.9.0",
-    "prettier": "1.15.3"
+    "camelcase": "5.3.1",
+    "eslint": "5.16.0",
+    "prettier": "1.17.0"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "13.1.0",
-    "eslint-plugin-import": "2.14.0",
-    "husky": "1.2.0",
-    "nyc": "13.1.0",
-    "sinon": "7.2.2",
+    "eslint-plugin-import": "2.17.2",
+    "husky": "2.1.0",
+    "nyc": "14.0.0",
+    "sinon": "7.3.2",
     "tap-spec": "5.0.0",
-    "tape": "4.9.1"
+    "tape": "4.10.1"
   },
   "files": [
     "/src",

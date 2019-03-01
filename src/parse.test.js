@@ -25,7 +25,7 @@ test(__filename, (t) => {
   const testAccounts = getFile('testAccounts');
   const testIntent = getFile('testIntent');
   const anotherIntent = getFile('anotherIntent');
-  const exampleSlotTypeSlotType = getFile('exampleSlotTypeSlotType');
+  const exampleSlotType = getFile('exampleSlotType');
   const testBot = getFile('testBot');
   const testSlot = getFile('testSlot');
 
@@ -73,9 +73,9 @@ test(__filename, (t) => {
     [
       {
         type: 'slotType',
-        fileName: 'exampleSlotTypeSlotType',
+        fileName: 'exampleSlotType',
         folder: 'slot-types',
-        code: exampleSlotTypeSlotType,
+        code: exampleSlotType,
       },
       distFolderPath,
     ],
