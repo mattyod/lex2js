@@ -20,7 +20,7 @@ function createBotFile(resource, hasAccounts) {
   const intentRequires = sortedIntents
     .map(({ name }) => `const ${name} = require('./intents/${name}.js');`);
   const slotTypeRequires = sortedSlotTypes
-    .map(({ name }) => `const ${name}SlotType = require('./slot-types/${name}.js');`);
+    .map(({ name }) => `const ${name}SlotType = require('./slot-types/${name}SlotType.js');`);
 
   const requires = [
     ...intentRequires,

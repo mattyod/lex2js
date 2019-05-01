@@ -33,7 +33,7 @@
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.14.0",
     "husky": "1.2.0",
-    "nyc": "13.1.0",
+    "nyc": "^14.1.0",
     "sinon": "7.2.2",
     "tap-spec": "5.0.0",
     "tape": "4.9.1"

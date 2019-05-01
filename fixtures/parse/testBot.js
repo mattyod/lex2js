@@ -1,7 +1,7 @@
 const hasAccounts = true;
 const anotherIntent = require('./intents/anotherIntent.js');
 const testIntent = require('./intents/testIntent.js');
-const exampleSlotTypeSlotType = require('./slot-types/exampleSlotType.js');
+const exampleSlotTypeSlotType = require('./slot-types/exampleSlotTypeSlotType.js');
 
 const testBot = {
   metadata: {
